@@ -7,7 +7,7 @@ Session = sessionmaker(bind=engine)
 
 def add_task(to_do, priority_name):
     session = Session()
-    priority = session.query(Priority).filter_by(name=priority_name).first()
+    priority = session.query(Priority).filter_by(level=priority_name).first()
     if not priority:
         raise ValueError('Invalid priority name. Use High, Medium or Low.')
     task = Task(to_do=title, priority=priority)
@@ -22,8 +22,20 @@ def view_tasks():
         print(f'{task.id}: {task.to_do} ({task.priority.name})')
     session.close()
 
-def edit_task():
-    pass
+def edit_task(task_id, to_do=None, priority_name=None):
+    session = Session()
+    task = session.query(Task).filter_by(id=task_id).first()
+    if not task:
+        raise ValueError('Task not found')
+    if to_do:
+        task.to_do = to_do
+    if priority_name:
+        priority = session.query(Priority).filter_by(level=priority_name).first()
+        if not priority:
+            raise ValueError('Invalid priority name')
+        task.priority = priority
+    session.commit()
+    session.close()
 
 def delete_task():
     pass
