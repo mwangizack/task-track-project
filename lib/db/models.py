@@ -7,7 +7,7 @@ class Priority(Base):
     __tablename__ = 'priorities'
     
     id = Column(Integer, primary_key=True)
-    priority = Column(String, nullable=False, unique=True)
+    level = Column(String, nullable=False, unique=True)
     tasks = relationship('Task', back_populates='priority')
 
 class Task(Base):
