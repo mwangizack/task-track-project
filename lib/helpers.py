@@ -1,3 +1,4 @@
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from db.models import Task, Priority
@@ -19,7 +20,7 @@ def view_tasks():
     session = Session()
     tasks = session.query(Task).all()
     for task in tasks:
-        print(f'{task.id}: {task.to_do} ({task.priority.name})')
+        print(f'{task.id}: {task.to_do} ({task.priority.level} Priority)')
     session.close()
 
 def edit_task(task_id, to_do=None, priority_name=None):
