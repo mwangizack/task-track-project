@@ -38,7 +38,7 @@ def edit_task(task_id, to_do=None, priority_name=None):
     session.commit()
     session.close()
 
-def delete_task():
+def delete_task(task_id):
     session = Session()
     task = session.query(Task).filter_by(id=task_id).first()
     if not task:

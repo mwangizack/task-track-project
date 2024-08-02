@@ -27,7 +27,7 @@ def view():
 @click.option('--priority', default=None)
 def edit(task_id, to_do, priority):
     try:
-        edit_task(task_id, to_do, description, priority)
+        edit_task(task_id, to_do, priority)
         click.echo('Task edited successfully')
     except ValueError as e:
         click.echo(f'Error: {e}')
