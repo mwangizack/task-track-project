@@ -10,7 +10,7 @@ def add_task(to_do, priority_name):
     priority = session.query(Priority).filter_by(level=priority_name).first()
     if not priority:
         raise ValueError('Invalid priority name. Use High, Medium or Low.')
-    task = Task(to_do=title, priority=priority)
+    task = Task(to_do=to_do, priority=priority)
     session.add(task)
     session.commit()
     session.close()
