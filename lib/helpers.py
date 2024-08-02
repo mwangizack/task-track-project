@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from db.models import Task, Priority
 
-engine = create_engine('sqlite:///todo_app.db')
+engine = create_engine('sqlite:///tasktrack.db')
 Session = sessionmaker(bind=engine)
 
 def add_task(to_do, priority_name):
@@ -45,5 +45,5 @@ def delete_task():
     session.delete(task)
     session.commit()
     session.close()
-    
+
 
