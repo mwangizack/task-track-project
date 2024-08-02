@@ -15,3 +15,16 @@ def add_task(to_do, priority_name):
     session.commit()
     session.close()
 
+def view_tasks():
+    session = Session()
+    tasks = session.query(Task).all()
+    for task in tasks:
+        print(f'{task.id}: {task.to_do} ({task.priority.name})')
+    session.close()
+
+def edit_task():
+    pass
+
+def delete_task():
+    pass
+
